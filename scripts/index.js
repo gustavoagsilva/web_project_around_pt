@@ -43,8 +43,8 @@ function closeModal(modal) {
 
 editButton.addEventListener("click", function () {
   handleOpenEditModal(editPopup);
-  editButton();
 });
+
 closeButton.addEventListener("click", function () {
   closeModal(editPopup);
 });
@@ -61,7 +61,25 @@ function fillProfileForm() {
   profileDescription.value = descriptionElement.textContent;
 }
 
-function handleOpenEditModal() {
+function handleOpenEditModal(modal) {
   fillProfileForm();
-  openModal();
+  openModal(modal);
 }
+let formElement = document.querySelector("#edit-profile-form");
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  let nameInput = document.querySelector(".popup__input_type_name");
+  let jobInput = document.querySelector(".popup__input_type_description");
+
+  let nameValue = nameInput.value;
+  let jobValue = jobInput.value;
+
+  let profileName = document.querySelector(".profile__title");
+  let profileJob = document.querySelector(".profile__description");
+
+  profileName.textContent = nameValue;
+  profileJob.textContent = jobValue;
+}
+formElement.addEventListener("submit", handleProfileFormSubmit);
