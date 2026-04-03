@@ -8,7 +8,7 @@ let initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
   },
   {
-    Name: "Montanhas Carecas",
+    name: "Montanhas Carecas",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
   },
   {
@@ -83,3 +83,59 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = jobValue;
 }
 formElement.addEventListener("submit", handleProfileFormSubmit);
+
+function getCardElement(name, link) {
+  const userTemplate = document.querySelector("#card-template").content.querySelector(".card")
+  const cloneTemplate = userTemplate.cloneNode(true);
+  const imageElement = cloneTemplate.querySelector(".card__image")
+  const nameElement = cloneTemplate.querySelector(".card__title")
+
+  imageElement.src = link
+  imageElement.alt = name
+  nameElement.textContent = name
+  // LIKE  E EXCLUIR AQUI!!  
+  const LikeButton = cloneTemplate.querySelector(".card__like-button")
+  LikeButton.addEventListener("click", function () {
+    LikeButton.classList.toggle("card__like-button_is-active");
+  });
+
+  const DeleteButton = cloneTemplate.querySelector(".card__delete-button")
+  DeleteButton.addEventListener("click", function () {
+    cloneTemplate.remove();
+  })
+
+
+  return cloneTemplate
+}
+
+function renderCard(name, link, container) {
+  const cardElement = getCardElement(name, link)
+  container.prepend(cardElement)
+}
+
+initialCards.forEach((card) => {
+  renderCard(card.name, card.link, document.querySelector(".cards__list"))
+})
+
+const addButton = document.querySelector(".profile__add-button")
+const addLocalPopup = document.querySelector("#new-card-popup")
+const cardForm = document.querySelector("#new-card-form")
+const cardNameInput = cardForm.querySelector(".popup__input_type_card-name")
+const cardLinkInput = document.querySelector(".popup__input_type_url")
+const closeCardButton = document.querySelector("#close-card")
+
+addButton.addEventListener("click", function () {
+  handleOpenEditModal(addLocalPopup);
+});
+
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+  renderCard(cardNameInput.value, cardLinkInput.value, document.querySelector(".cards__list"))
+  closeModal(addLocalPopup)
+}
+cardForm.addEventListener("submit", handleCardFormSubmit);
+
+closeCardButton.addEventListener("click", function () {
+  closeModal(addLocalPopup);
+});
+
