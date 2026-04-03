@@ -104,6 +104,22 @@ function getCardElement(name, link) {
     cloneTemplate.remove();
   })
 
+  const imageModal = document.querySelector("#image-popup");
+  const modalImage = document.querySelector(".popup__image");
+  const modalCaption = document.querySelector(".popup__caption");
+  const closeButton = document.querySelector("#close-button");
+
+  const CardImage = cloneTemplate.querySelector(".card__image")
+  CardImage.addEventListener("click", function () {
+    openModal(imageModal)
+    modalImage.src = link
+    modalImage.alt = name
+    modalCaption.textContent = name
+    closeButton.addEventListener("click", function () {
+      closeModal(imageModal)
+    })
+  })
+
 
   return cloneTemplate
 }
