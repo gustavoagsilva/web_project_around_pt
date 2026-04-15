@@ -81,6 +81,7 @@ function handleProfileFormSubmit(evt) {
 
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
+  closeModal(editPopup);
 }
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
@@ -93,7 +94,7 @@ function getCardElement(name, link) {
   imageElement.src = link
   imageElement.alt = name
   nameElement.textContent = name
-  // LIKE  E EXCLUIR AQUI!!  
+
   const LikeButton = cloneTemplate.querySelector(".card__like-button")
   LikeButton.addEventListener("click", function () {
     LikeButton.classList.toggle("card__like-button_is-active");
