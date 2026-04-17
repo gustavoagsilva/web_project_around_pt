@@ -31,6 +31,16 @@
   cursor: pointer;
 }
 
+.popup__button:disabled {
+  background-color: #E5E5E5;
+  color: #C4C4C4;
+  cursor: not-allowed;
+}
+
+.popup__input-error {
+  color: red;
+}
+
 .popup__close {
   width: 35px;
   height: 35px;
@@ -58,6 +68,7 @@
   position: relative;
   box-sizing: border-box;
   padding: 34px 36px;
+  z-index: 5;
 }
 
 .popup__form {
