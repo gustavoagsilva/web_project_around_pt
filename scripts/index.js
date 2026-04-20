@@ -226,6 +226,21 @@ popups.forEach((element) => {
   element.addEventListener("click", handlePopClose)
 });
 
+function handlePopEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closeModal(openedPopup);
+  }
+}
+
+popups.forEach((element) => {
+  document.addEventListener("keydown", (evt) => {
+    handlePopEscClose(evt);
+  });
+});
+
+
+
 
 
 
