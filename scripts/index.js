@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -50,10 +50,10 @@ closeButton.addEventListener("click", function () {
 });
 
 function fillProfileForm() {
-  let titleElement = document.querySelector(".profile__title");
-  let descriptionElement = document.querySelector(".profile__description");
-  let profileTitle = document.querySelector(".popup__input_type_name");
-  let profileDescription = document.querySelector(
+  const titleElement = document.querySelector(".profile__title");
+  const descriptionElement = document.querySelector(".profile__description");
+  const profileTitle = document.querySelector(".popup__input_type_name");
+  const profileDescription = document.querySelector(
     ".popup__input_type_description",
   );
 
@@ -65,19 +65,19 @@ function handleOpenEditModal(modal) {
   fillProfileForm();
   openModal(modal);
 }
-let formElement = document.querySelector("#edit-profile-form");
+const formElement = document.querySelector("#edit-profile-form");
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  let nameInput = document.querySelector(".popup__input_type_name");
-  let jobInput = document.querySelector(".popup__input_type_description");
+  const nameInput = document.querySelector(".popup__input_type_name");
+  const jobInput = document.querySelector(".popup__input_type_description");
 
-  let nameValue = nameInput.value;
-  let jobValue = jobInput.value;
+  const nameValue = nameInput.value;
+  const jobValue = jobInput.value;
 
-  let profileName = document.querySelector(".profile__title");
-  let profileJob = document.querySelector(".profile__description");
+  const profileName = document.querySelector(".profile__title");
+  const profileJob = document.querySelector(".profile__description");
 
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
