@@ -113,8 +113,9 @@ export {
   handlePopClose,
   handlePopEscClose,
   initialCards,
+  editPopup,
+  cardForm,
   cardNameInput,
   cardLinkInput,
-  cardForm,
   addLocalPopup,
 };
