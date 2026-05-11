@@ -1,4 +1,3 @@
-import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import {
   openModal,
@@ -18,9 +17,20 @@ import {
   editPopup,
 } from "./utils.js";
 
-initialCards.forEach(function (card) {
-  console.log(card);
-});
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: ".popup__input-error",
+};
+
+const profileForm = document.querySelector("#edit-profile-form");
+
+const profileValidator = new FormValidator(config, profileForm);
+profileValidator.setEventListeners();
+
+const cardValidator = new FormValidator(config, cardForm);
+cardValidator.setEventListeners();
 
 const editButton = document.querySelector(".profile__edit-button");
 const closeButton = editPopup.querySelector(".popup__close");

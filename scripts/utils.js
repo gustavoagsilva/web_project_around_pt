@@ -1,3 +1,4 @@
+import { Card } from "./Card.js";
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -90,7 +91,6 @@ function handleCardFormSubmit(evt) {
 
 function handlePopClose(evt) {
   if (evt.target.classList.contains("popup")) {
-    console.log(evt.target);
     closeModal(evt.currentTarget);
   }
 }

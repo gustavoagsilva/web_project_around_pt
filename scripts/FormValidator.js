@@ -10,13 +10,6 @@ export class FormValidator {
     );
   }
 
-  config = {
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inactiveButtonClass: ".popup__input-error",
-  };
-
   _checkValid(inputElement, inputError) {
     if (!inputElement.validity.valid) {
       inputError.innerText = inputElement.validationMessage;
