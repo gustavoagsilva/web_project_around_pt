@@ -1,3 +1,5 @@
+import { handleImageClick } from "./utils.js";
+
 export class Card {
   constructor(name, link, cardSelector) {
     this._name = name;
@@ -43,6 +45,10 @@ export class Card {
 
     this._cardDeleteButton.addEventListener("click", () => {
       this._handleDeleteClick();
+    });
+
+    this._cardImage.addEventListener("click", () => {
+      handleImageClick(this._link, this._name);
     });
   }
 

@@ -98,8 +98,17 @@ function handlePopClose(evt) {
 function handlePopEscClose(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_is-opened");
+    console.log(openedPopup);
     closeModal(openedPopup);
   }
+}
+
+function handleImageClick(imageLink, name) {
+  const image = document.querySelector(".popup__image");
+  image.src = imageLink;
+  const text = document.querySelector(".popup__caption");
+  text.textContent = name;
+  openModal(document.querySelector("#image-popup"));
 }
 
 export {
@@ -112,6 +121,7 @@ export {
   handleCardFormSubmit,
   handlePopClose,
   handlePopEscClose,
+  handleImageClick,
   initialCards,
   editPopup,
   cardForm,

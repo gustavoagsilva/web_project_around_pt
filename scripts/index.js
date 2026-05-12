@@ -82,6 +82,7 @@ popups.forEach((element) => {
 
 popups.forEach((element) => {
   document.addEventListener("keydown", (evt) => {
+    console.log("passei");
     handlePopEscClose(evt);
   });
 });

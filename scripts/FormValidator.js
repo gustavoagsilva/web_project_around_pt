@@ -12,9 +12,9 @@ export class FormValidator {
 
   _checkValid(inputElement, inputError) {
     if (!inputElement.validity.valid) {
-      inputError.innerText = inputElement.validationMessage;
+      this._showInputError(inputElement, inputError);
     } else {
-      inputError.innerText = "";
+      this._hideInputError(inputElement, inputError);
     }
   }
 
@@ -27,7 +27,10 @@ export class FormValidator {
   }
 
   _hasInvalidInput() {
-    const inputList = this._formElement.querySelectorAll(".popup__input");
+    const inputList = Array.from(
+      this._formElement.querySelectorAll(".popup__input"),
+    );
+    console.log(inputList);
     return inputList.some((input) => {
       if (!input.checkValidity()) {
         return true;
@@ -50,6 +53,8 @@ export class FormValidator {
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._toggleSubmitButton();
+        const inputError = document.querySelector(`.${input.id}-input-error`);
+        this._checkValid(input, inputError);
       });
     });
   }
