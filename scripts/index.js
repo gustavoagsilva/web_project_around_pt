@@ -9,6 +9,7 @@ import {
   handleCardFormSubmit,
   handlePopClose,
   handlePopEscClose,
+  handleButtonClose,
   initialCards,
   cardNameInput,
   cardLinkInput,
@@ -80,9 +81,20 @@ popups.forEach((element) => {
   element.addEventListener("click", handlePopClose);
 });
 
-popups.forEach((element) => {
-  document.addEventListener("keydown", (evt) => {
-    console.log("passei");
-    handlePopEscClose(evt);
-  });
+document.addEventListener("keydown", (evt) => {
+  handlePopEscClose(evt);
 });
+
+document.querySelector("#close-button").addEventListener("click", (evt) => {
+  handleButtonClose(evt);
+}); /*ARRUMAR AQUI */
+
+closeButton.addEventListener("click", () => {
+  const imagePopup = document.querySelector("#image-popup");
+  closeModal(imagePopup);
+});
+// popups.forEach((element) => {
+//   document.addEventListener("keydown", (evt) => {
+//     handlePopEscClose(evt);
+//   });
+// });
