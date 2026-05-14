@@ -30,7 +30,6 @@ export class FormValidator {
     const inputList = Array.from(
       this._formElement.querySelectorAll(".popup__input"),
     );
-    console.log(inputList);
     return inputList.some((input) => {
       if (!input.checkValidity()) {
         return true;
@@ -41,7 +40,7 @@ export class FormValidator {
   }
 
   _toggleSubmitButton() {
-    const submitButton = document.querySelector(".popup__button");
+    const submitButton = this._formElement.querySelector(".popup__button");
     if (this._hasInvalidInput()) {
       submitButton.disabled = true;
     } else {
@@ -50,6 +49,7 @@ export class FormValidator {
   }
 
   setEventListeners() {
+    this._toggleSubmitButton();
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._toggleSubmitButton();
