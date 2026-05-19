@@ -87,14 +87,9 @@ document.addEventListener("keydown", (evt) => {
 
 document.querySelector("#close-button").addEventListener("click", (evt) => {
   handleButtonClose(evt);
-}); /*ARRUMAR AQUI */
+});
 
 closeButton.addEventListener("click", () => {
   const imagePopup = document.querySelector("#image-popup");
   closeModal(imagePopup);
 });
-// popups.forEach((element) => {
-//   document.addEventListener("keydown", (evt) => {
-//     handlePopEscClose(evt);
-//   });
-// });
