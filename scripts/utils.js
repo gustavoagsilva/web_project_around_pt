@@ -98,7 +98,7 @@ function handlePopClose(evt) {
 function handleButtonClose(evt) {
   const imagePopup = document.querySelector(".popup_is-opened");
   closeModal(imagePopup);
-} /*ARRUMAR AQUI */
+}
 
 function handlePopEscClose(evt) {
   if (evt.key === "Escape") {
