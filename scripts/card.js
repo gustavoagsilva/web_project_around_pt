@@ -1,10 +1,11 @@
 import { handleImageClick } from "./utils.js";
 
 export class Card {
-  constructor(name, link, cardSelector) {
+  constructor(name, link, cardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -49,6 +50,10 @@ export class Card {
 
     this._cardImage.addEventListener("click", () => {
       handleImageClick(this._link, this._name);
+    });
+
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
     });
   }
 
