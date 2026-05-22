@@ -1,4 +1,6 @@
-export default class PopupWithForm extends Popup {
+import { Popup } from "./Popup.js";
+
+export class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
@@ -40,12 +42,3 @@ export default class PopupWithForm extends Popup {
     this._formElement.reset();
   }
 }
-
-// Instância para o pop-up de editar perfil
-const editProfilePopup = new PopupWithForm(
-  "#edit-popup",
-  handleProfileFormSubmit,
-);
-
-// Instância para o pop-up de adicionar cartão
-const addCardPopup = new PopupWithForm("#new-card-popup", handleCardFormSubmit);

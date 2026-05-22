@@ -52,11 +52,6 @@ function fillProfileForm() {
   profileDescription.value = descriptionElement.textContent;
 }
 
-function handleOpenEditModal(modal) {
-  fillProfileForm();
-  openModal(modal);
-}
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -72,21 +67,6 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
   closeModal(editPopup);
-}
-
-function renderCard(name, link, container) {
-  const card = new Card(name, link, "#card-template").getCard();
-  container.prepend(card);
-}
-
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-  renderCard(
-    cardNameInput.value,
-    cardLinkInput.value,
-    document.querySelector(".cards__list"),
-  );
-  closeModal(addLocalPopup);
 }
 
 function handlePopClose(evt) {
@@ -119,10 +99,7 @@ export {
   openModal,
   closeModal,
   fillProfileForm,
-  handleOpenEditModal,
   handleProfileFormSubmit,
-  renderCard,
-  handleCardFormSubmit,
   handlePopClose,
   handlePopEscClose,
   handleButtonClose,
