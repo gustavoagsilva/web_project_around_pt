@@ -40,35 +40,6 @@ function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
 }
 
-function fillProfileForm() {
-  const titleElement = document.querySelector(".profile__title");
-  const descriptionElement = document.querySelector(".profile__description");
-  const profileTitle = document.querySelector(".popup__input_type_name");
-  const profileDescription = document.querySelector(
-    ".popup__input_type_description",
-  );
-
-  profileTitle.value = titleElement.textContent;
-  profileDescription.value = descriptionElement.textContent;
-}
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  const nameInput = document.querySelector(".popup__input_type_name");
-  const jobInput = document.querySelector(".popup__input_type_description");
-
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-
-  const profileName = document.querySelector(".profile__title");
-  const profileJob = document.querySelector(".profile__description");
-
-  profileName.textContent = nameValue;
-  profileJob.textContent = jobValue;
-  closeModal(editPopup);
-}
-
 function handlePopClose(evt) {
   if (evt.target.classList.contains("popup")) {
     closeModal(evt.currentTarget);
@@ -98,8 +69,6 @@ function handleImageClick(imageLink, name) {
 export {
   openModal,
   closeModal,
-  fillProfileForm,
-  handleProfileFormSubmit,
   handlePopClose,
   handlePopEscClose,
   handleButtonClose,
