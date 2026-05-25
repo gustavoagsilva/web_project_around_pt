@@ -1,10 +1,10 @@
-import { FormValidator } from "./FormValidator.js";
-import { Card } from "./Card.js";
-import { UserInfo } from "./UserInfo.js";
-import { Section } from "./Section.js";
-import { Popup } from "./Popup.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Card } from "../components/Card.js";
+import { UserInfo } from "../components/UserInfo.js";
+import { Section } from "../components/Section.js";
+import { Popup } from "../components/Popup.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
 import {
   openModal,
   closeModal,
@@ -17,7 +17,7 @@ import {
   cardForm,
   addLocalPopup,
   editPopup,
-} from "./utils.js";
+} from "../components/utils.js";
 
 const config = {
   formSelector: ".popup__form",
@@ -51,7 +51,6 @@ function renderCard(name, link, container) {
 }
 
 function handleCardFormSubmit(evt) {
-  evt.preventDefault();
   renderCard(
     cardNameInput.value,
     cardLinkInput.value,
@@ -61,8 +60,6 @@ function handleCardFormSubmit(evt) {
 }
 
 function handleProfileFormSubmit(evt) {
-  // evt.preventDefault();
-
   const nameInput = document.querySelector(".popup__input_type_name");
   const jobInput = document.querySelector(".popup__input_type_description");
 
