@@ -1,4 +1,3 @@
-import { Card } from "./Card.js";
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -32,47 +31,7 @@ const cardNameInput = cardForm.querySelector(".popup__input_type_card-name");
 const cardLinkInput = document.querySelector(".popup__input_type_url");
 const addLocalPopup = document.querySelector("#new-card-popup");
 
-function openModal(modal) {
-  modal.classList.add("popup_is-opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("popup_is-opened");
-}
-
-function handlePopClose(evt) {
-  if (evt.target.classList.contains("popup")) {
-    closeModal(evt.currentTarget);
-  }
-}
-
-function handleButtonClose(evt) {
-  const imagePopup = document.querySelector(".popup_is-opened");
-  closeModal(imagePopup);
-}
-
-function handlePopEscClose(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_is-opened");
-    closeModal(openedPopup);
-  }
-}
-
-function handleImageClick(imageLink, name) {
-  const image = document.querySelector(".popup__image");
-  image.src = imageLink;
-  const text = document.querySelector(".popup__caption");
-  text.textContent = name;
-  openModal(document.querySelector("#image-popup"));
-}
-
 export {
-  openModal,
-  closeModal,
-  handlePopClose,
-  handlePopEscClose,
-  handleButtonClose,
-  handleImageClick,
   initialCards,
   editPopup,
   cardForm,

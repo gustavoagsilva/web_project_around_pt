@@ -6,11 +6,6 @@ import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import {
-  openModal,
-  closeModal,
-  handlePopClose,
-  handlePopEscClose,
-  handleButtonClose,
   initialCards,
   cardNameInput,
   cardLinkInput,
@@ -56,7 +51,6 @@ function handleCardFormSubmit(evt) {
     cardLinkInput.value,
     document.querySelector(".cards__list"),
   );
-  closeModal(addLocalPopup);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -67,8 +61,6 @@ function handleProfileFormSubmit(evt) {
   const jobValue = jobInput.value;
 
   user.setUserInfo({ name: nameValue, job: jobValue });
-
-  closeModal(editPopup);
 }
 
 const cardSection = new Section(
