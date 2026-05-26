@@ -41,7 +41,9 @@ const cardValidator = new FormValidator(config, cardForm);
 cardValidator.setEventListeners();
 
 function renderCard(name, link, container) {
-  const card = new Card(name, link, "#card-template").getCard();
+  const card = new Card(name, link, "#card-template", () => {
+    imagePopup.open(name, link);
+  }).getCard();
   cardSection.addItem(card);
 }
 
