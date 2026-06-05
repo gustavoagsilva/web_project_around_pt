@@ -1,9 +1,10 @@
 export class Card {
-  constructor(name, link, cardSelector, handleCardClick) {
+  constructor(name, link, cardSelector, handleCardClick, handleDeleteClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -18,8 +19,12 @@ export class Card {
     this._cardLikeButton.classList.toggle("card__like-button_is-active");
   }
 
-  _handleDeleteClick() {
+  removeCard() {
     this._element.remove();
+  }
+
+  _handleDeleteClick() {
+    this.removeCard();
   }
 
   _getElements() {
@@ -43,7 +48,7 @@ export class Card {
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDeleteClick();
+      this._handleDeleteClick(this);
     });
 
     this._cardImage.addEventListener("click", () => {

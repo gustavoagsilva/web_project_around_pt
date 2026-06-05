@@ -5,6 +5,8 @@ import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
+import { Api } from "../components/Api.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import {
   initialCards,
   cardNameInput,
@@ -42,7 +44,9 @@ cardValidator.setEventListeners();
 
 function renderCard(name, link, container) {
   const card = new Card(name, link, "#card-template", () => {
-    imagePopup.open(name, link);
+    imagePopup.open(name, link); (cardInstance) => {
+      deletePopup.open(cardInstance);
+    }
   }).getCard();
   cardSection.addItem(card);
 }
@@ -62,22 +66,42 @@ function handleProfileFormSubmit(evt) {
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
 
-  user.setUserInfo({ name: nameValue, job: jobValue });
+  api.setUserInfo({ name: nameValue, job: jobValue }).then((result) => {
+    user.setUserInfo({ name: result.name, job: result.about });
+  }).catch((err) => {
+    console.log(err);
+  });
 }
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item.name, item.link, "#card-template", () => {
-        imagePopup.open(item.name, item.link);
-      });
-      cardSection.addItem(card.getCard());
+const api = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
+  headers: {
+    authorization: "23344910-5bee-4adf-910b-2a200690ba88",
+    "Content-Type": "application/json"
+  }
+});
+
+let cardSection = null;
+
+api.getInitialCards().then((result) => {
+  cardSection = new Section(
+    {
+      items: result,
+      renderer: (item) => {
+        const card = new Card(item.name, item.link, "#card-template", () => {
+          imagePopup.open(item.name, item.link);
+        }, (cardInstance) => {
+          deletePopup.open(cardInstance);
+        });
+        cardSection.addItem(card.getCard());
+      },
     },
-  },
-  ".cards__list",
-);
-cardSection.renderItems();
+    ".cards__list",
+  );
+  cardSection.renderItems();
+}).catch((err) => {
+  console.log(err);
+});
 
 editButton.addEventListener("click", () => {
   const userInfo = user.getUserInfo();
@@ -106,3 +130,15 @@ const user = new UserInfo({
   profileTitle: ".profile__title",
   profileDescription: ".profile__description",
 });
+
+const deletePopup = new PopupWithConfirmation(
+  "#delete-popup",
+  (card) => {
+    card.removeCard();
+    deletePopup.close();
+  }
+);
+
+deletePopup.setEventListeners();
+
+
