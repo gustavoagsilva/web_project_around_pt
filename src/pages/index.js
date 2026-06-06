@@ -35,6 +35,7 @@ const typeNameInput = document.querySelector(".popup__input_type_name");
 const descriptionNameInput = document.querySelector(
   ".popup__input_type_description",
 );
+const imagebutton = document.querySelector(".profile__image-edit-button");
 
 const profileValidator = new FormValidator(config, profileForm);
 profileValidator.setEventListeners();
@@ -141,4 +142,13 @@ const deletePopup = new PopupWithConfirmation(
 
 deletePopup.setEventListeners();
 
+const popupEditAvatar = new PopupWithForm("#avatar-popup", (data) => {
+  api.setUserAvatar({ avatar: data.avatar }).then((result) => {
+    user.setUserAvatar(result.avatar);
+  }).catch((err) => {
+    console.log(err);
+  });
+  popupEditAvatar.setEventListeners();
+});
 
+imagebutton.addEventListener("click", () => popupEditAvatar.open());
