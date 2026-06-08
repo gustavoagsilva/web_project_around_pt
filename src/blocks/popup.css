@@ -44,7 +44,7 @@
   right: -40px;
   width: 32px;
   height: 32px;
-  background: transparent url("../images/close-icon.svg") center no-repeat;
+  background: transparent url("../images/close.svg") center no-repeat;
   background-size: contain;
   border: none;
   cursor: pointer;
@@ -60,8 +60,8 @@
 }
 
 .popup__button:disabled {
-  background-color: #E5E5E5;
-  color: #C4C4C4;
+  background-color: #e5e5e5;
+  color: #c4c4c4;
   cursor: not-allowed;
 }
 
