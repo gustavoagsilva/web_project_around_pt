@@ -53,27 +53,30 @@ function renderCard(result, container) {
     (cardInstance) => {
       deletePopup.open(cardInstance);
     },
-    (_id, cardLikeButton) => {
-      api
-        .addLike(_id)
-        .then(() => {
-          cardLikeButton.classList.toggle("card__like-button_is-active");
-        })
-        .catch(() => {
-          console.log(err);
-        });
+    (_id, cardLikeButton, isLiked) => {
+      isLiked
+        ? api
+            .removeLike(_id)
+            .then(() => {
+              cardLikeButton.classList.remove("card__like-button_is-active");
+            })
+            .catch(() => {
+              console.log(err);
+            })
+        : api
+            .addLike(_id)
+            .then(() => {
+              cardLikeButton.classList.add("card__like-button_is-active");
+            })
+            .catch(() => {
+              console.log(err);
+            });
     },
   ).getCard();
   cardSection.addItem(card);
 }
 
 function handleCardFormSubmit(evt) {
-  // renderCard(
-  //   cardNameInput.value,
-  //   cardLinkInput.value,
-  //   document.querySelector(".cards__list"),
-  // );
-
   api
     .addCard({ name: evt["place-name"], link: evt.link })
     .then((result) => {
@@ -81,13 +84,12 @@ function handleCardFormSubmit(evt) {
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {});
+    });
 }
 
 function handleProfileFormSubmit(evt) {
-  const nameInput = document.querySelector(".popup__input_type_name");
-  const jobInput = document.querySelector(".popup__input_type_description");
+  const nameInput = typeNameInput.value;
+  const jobInput = descriptionNameInput.value;
 
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
@@ -96,7 +98,6 @@ function handleProfileFormSubmit(evt) {
     "#edit-profile-form .popup__button",
   );
   submitImage.textContent = "Salvando...";
-  console.log(submitImage);
   api
     .setUserInfo({ name: nameValue, job: jobValue })
     .then((result) => {
@@ -131,40 +132,7 @@ api
       {
         items: result,
         renderer: (item) => {
-          const card = new Card(
-            item,
-            "#card-template",
-            () => {
-              imagePopup.open(item.name, item.link);
-            },
-            (cardInstance) => {
-              deletePopup.open(cardInstance);
-            },
-            (_id, cardLikeButton, isLiked) => {
-              isLiked
-                ? api
-                    .removeLike(_id)
-                    .then(() => {
-                      cardLikeButton.classList.remove(
-                        "card__like-button_is-active",
-                      );
-                    })
-                    .catch(() => {
-                      console.log(err);
-                    })
-                : api
-                    .addLike(_id)
-                    .then(() => {
-                      cardLikeButton.classList.add(
-                        "card__like-button_is-active",
-                      );
-                    })
-                    .catch(() => {
-                      console.log(err);
-                    });
-            },
-          );
-          cardSection.addItem(card.getCard());
+          renderCard(item);
         },
       },
       ".cards__list",
@@ -230,7 +198,6 @@ const deletePopup = new PopupWithConfirmation("#delete-popup", (card) => {
 deletePopup.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm("#avatar-popup", (data) => {
-  console.log(data);
   api
     .setUserAvatar({ avatar: data["avatar-url"] })
     .then((result) => {
