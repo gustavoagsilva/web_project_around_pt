@@ -88,11 +88,8 @@ function handleCardFormSubmit(evt) {
 }
 
 function handleProfileFormSubmit(evt) {
-  const nameInput = typeNameInput.value;
-  const jobInput = descriptionNameInput.value;
-
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
+  const nameValue = typeNameInput.value;
+  const jobValue = descriptionNameInput.value;
 
   const submitImage = document.querySelector(
     "#edit-profile-form .popup__button",
